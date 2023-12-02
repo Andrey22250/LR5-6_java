@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class PC
+public class PC implements BuildComp, Cloneable
 {
     private float price;
     private CPU cpu;
@@ -69,6 +69,10 @@ public class PC
 
         SetPC(price,cpu,gpu,ram,mrbrd);
     }
+    public void SetCPU(CPU cpu)
+    {
+        this.cpu = cpu;
+    }
     public void Undervolt_GPU()
     {
         if (gpu.GetTDP() -3 > gpu.GetMin_TDP())
@@ -101,6 +105,30 @@ public class PC
             default -> throw new IllegalArgumentException("Некорректный формат данных!");
         }
     }
+    @Override public Object clone() throws CloneNotSupportedException {
+        PC clone = (PC) super.clone();
+        clone.cpu = (CPU) this.cpu.clone();
+        clone.gpu = (GPU) this.gpu.clone();
+        clone.ram = (RAM) this.ram.clone();
+        clone.mrbrd = (Motherboard) this.mrbrd.clone();
+        return clone;
+    }
+
+    @Override
+    public String getObjectName() {
+        return null;
+    }
+
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    @Override
+    public void input() {
+
+    }
+
     static class Component
     {
         public static PC CreateComp(String name)

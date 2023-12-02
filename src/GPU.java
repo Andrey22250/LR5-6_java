@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class GPU {
+public class GPU implements Cloneable{
     private String name_gpu;
     private int vram;
     private int TDP;
@@ -67,5 +67,8 @@ public class GPU {
 
             SetCPU(name_gpu, vram, TDP);
         }
+    }
+    @Override public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

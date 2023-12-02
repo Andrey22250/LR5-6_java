@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class RAM {
+public class RAM implements BuildComp, Cloneable {
     private String type_ddr;
     private int frequency;
     private int mem;
@@ -39,6 +39,17 @@ public class RAM {
     public int getMem() {
         return mem;
     }
+
+    @Override
+    public String getObjectName() {
+        return null;
+    }
+
+    @Override
+    public String getName() {
+        return null;
+    }
+
     public void input()
     {
         String type_ddr;
@@ -54,5 +65,12 @@ public class RAM {
         mem = in.nextInt();
 
         SetRam(type_ddr, frequency, mem);
+    }
+    @Override public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+    @Override public String toString() {
+        String result = String.format("%s, %d МГц", this.GetType_ddr(), this.GetFrequency());
+        return result;
     }
 }

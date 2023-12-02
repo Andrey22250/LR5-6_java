@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Motherboard {
+public class Motherboard implements Cloneable {
     private String name_mrbrd;
     private String chipset;
     public Motherboard() { }
@@ -44,5 +44,8 @@ public class Motherboard {
         chipset = in.nextLine();
 
         SetMrbrd(name_mrbrd, chipset);
+    }
+    @Override public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

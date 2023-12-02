@@ -1,10 +1,12 @@
+import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
-public class Build {
+public class Build<T extends BuildComp> {
     private static int number = 1;
     private int numBuild;
     private PC pc;
     private String client;
     private Status status;
+    private T objectOfBuild;
     public Build()
     {
         this.pc = new PC();
@@ -12,6 +14,10 @@ public class Build {
         this.numBuild = number;
 
         number++;
+    }
+    public Build(T objectOfBuild) {
+        this();
+        this.objectOfBuild = objectOfBuild;
     }
     public Build(String client)
     {
@@ -68,20 +74,23 @@ public class Build {
     public Status GetStatus() {
         return status;
     }
-    public void input_build()
-    {
+    public void input_build() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         String client;
+        //приходится использовать рефлексию, чтобы создать объект типа T
+        Class<T> clazz = (Class<T>)this.objectOfBuild.getClass();
+        T objectOfBuild = clazz.getDeclaredConstructor().newInstance();
         Status status;
 
         Scanner in = new Scanner(System.in);
-
-        System.out.print("Ввод данных заказа\n\n ");
         System.out.print("Введите имя клиента: ");
         client = in.nextLine();
-        System.out.print("Введите статус заказа, где\n0 - Заказ создан\n1 - Заказ в работе\n2 - Заказ выполнен\nВаш выбор: ");
+        System.out.println("\tВвод параметров объекта заказа");
+        objectOfBuild.input();
+        System.out.print("Введите статус заказа (0 - в ожидании, 1 - в ремонте, 2 - отремонтирован): ");
         status = Status.intToStatus(in.nextInt());
-        System.out.print("\nВвод информации о компьютере\n");
-        pc.input_pc();
+
+        this.objectOfBuild = objectOfBuild;
+        this.status = status;
 
         SetBuild(client, pc, status);
     }

@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class CPU {
+public class CPU implements BuildComp, Cloneable {
     private String name_cpu;
     private int frequency;
     private int cores;
@@ -24,11 +24,7 @@ public class CPU {
             this.cores = cores;
             this.treads = treads;
         }
-        else
-        {
-          System.out.println("Ошибка ввода данных!");
-          System.exit(-1);
-        }
+        else throw new IllegalArgumentException("Ошибка ввода данных!");
     }
     public String GetName()
     {
@@ -45,6 +41,16 @@ public class CPU {
     public int GetTreads()
     {
         return treads;
+    }
+
+    @Override
+    public String getObjectName() {
+        return null;
+    }
+
+    @Override
+    public String getName() {
+        return null;
     }
 
     public void input()
@@ -64,5 +70,13 @@ public class CPU {
         treads = in.nextInt();
 
         SetCPU(name_cpu, frequency, cores, treads);
+    }
+    @Override public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+    @Override public String toString() {
+        //здесь используется format из-за погрешности при расчете частоты, чтобы "красиво" выводить дробные числа
+        String result = String.format("%s, %d ГГЦ, %d ядер, %d потоков", this.GetName(), this.GetFrequency(), this.GetCores(), this.GetTreads());
+        return result;
     }
 }
