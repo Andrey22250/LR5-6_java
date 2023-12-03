@@ -86,7 +86,7 @@ public class Build<T extends BuildComp> {
         client = in.nextLine();
         System.out.println("\tВвод параметров объекта заказа");
         objectOfBuild.input();
-        System.out.print("Введите статус заказа (0 - в ожидании, 1 - в ремонте, 2 - отремонтирован): ");
+        System.out.print("Введите статус заказа \n0 - Заказ создан\n1 - Заказ в работе\n2 - Заказ выполнен\nВаш выбор: ");
         status = Status.intToStatus(in.nextInt());
 
         this.objectOfBuild = objectOfBuild;
