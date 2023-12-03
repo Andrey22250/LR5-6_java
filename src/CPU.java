@@ -13,7 +13,7 @@ public class CPU implements BuildComp, Cloneable {
     }
     private boolean CheckCor(String name_cpu, int frequency, int cores, int treads)
     {
-        return frequency>0 && cores > 0 && treads>0 && !name_cpu.isEmpty();
+        return frequency>0 && cores > 0 && treads>0 && !name_cpu.isEmpty() && cores <= treads;
     }
     private void SetCPU(String name_cpu, int frequency, int cores, int treads)
     {

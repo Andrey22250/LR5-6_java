@@ -22,8 +22,8 @@ public class Main
             pcs[i].out_PC();
         }
         CPU[][] boxOfCPUs = new CPU[2][2];
-        for (int i = 0; i < 1; i++)
-            for (int j = 0; j < 1; j++)
+        for (int i = 0; i < 2; i++)
+            for (int j = 0; j < 2; j++)
             {
                 boxOfCPUs[i][j] = new CPU();
                 System.out.printf("\n\n%s, %d, %d, %d\n", boxOfCPUs[i][j].GetName(), boxOfCPUs[i][j].GetFrequency(), boxOfCPUs[i][j].GetCores(), boxOfCPUs[i][j].GetTreads());
