@@ -26,7 +26,7 @@ public class Main
             for (int j = 0; j < 2; j++)
             {
                 boxOfCPUs[i][j] = new CPU();
-                System.out.printf("\n\n%s, %d, %d, %d\n", boxOfCPUs[i][j].GetName(), boxOfCPUs[i][j].GetFrequency(), boxOfCPUs[i][j].GetCores(), boxOfCPUs[i][j].GetTreads());
+                System.out.printf("\n%s, %d, %d, %d\n", boxOfCPUs[i][j].GetName(), boxOfCPUs[i][j].GetFrequency(), boxOfCPUs[i][j].GetCores(), boxOfCPUs[i][j].GetTreads());
             }
 
         //6-ая лабораторная
